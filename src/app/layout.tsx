@@ -1,4 +1,5 @@
 import { exo2Font } from "@/app/font"
+import Navbar from "@/components/navbar/navbar"
 import type { Metadata } from "next"
 import React from "react"
 import "./globals.css"
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${exo2Font.className} bg-black text-white`}>
+        <Navbar />
         {children}
       </body>
     </html>
