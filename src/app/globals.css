@@ -33,6 +33,11 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    /* Custom colours */
+    --black: #1d1e22;
+    --white: #fdfdfd;
+    --gold: #9c7244;
   }
 
   .dark {

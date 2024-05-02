@@ -1,7 +1,7 @@
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      this is the main page
-    </main>
-  )
+import React from "react"
+
+const Home: React.FC = () => {
+  return <div>this is the main page</div>
 }
+
+export default Home

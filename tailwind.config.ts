@@ -19,6 +19,11 @@ const config = {
     },
     extend: {
       colors: {
+        // custom colours
+        black: "var(--black)",
+        white: "var(--white)",
+        gold: "var(--gold))",
+        // non-custom colours
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
