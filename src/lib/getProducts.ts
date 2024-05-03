@@ -1,14 +1,12 @@
+import { axiosPublic } from "@/api/api"
+import { getAllProducts } from "@/api/products/productsAPI"
+
 const getProducts = async () => {
-  // no cache for get products
-  const res = await fetch("http://localhost:8000/api/v1/products", {
-    cache: "no-store",
-  })
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
+  try {
+    return getAllProducts(axiosPublic)
+  } catch (error) {
+    throw new Error("Failed to fetch products")
   }
-
-  return res.json()
 }
 
 export default getProducts
