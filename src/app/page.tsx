@@ -22,7 +22,7 @@ const Credits: React.FC = () => {
 
 const Home: React.FC = () => {
   return (
-    <div className="w-screen">
+    <div>
       <Landing />
 
       <Credits />
