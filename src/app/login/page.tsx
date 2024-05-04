@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { signIn } from "next-auth/react"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -31,8 +32,13 @@ const Login: React.FC = () => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof loginFormSchema>) => {
+    const result = await signIn("credentials", {
+      username: values.username,
+      password: values.password,
+      redirect: true,
+      callbackUrl: "/",
+    })
   }
 
   return (
