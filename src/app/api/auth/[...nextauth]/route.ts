@@ -4,6 +4,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -20,14 +21,23 @@ export const authOptions: NextAuthOptions = {
           username: username,
           password: password,
         })
-        const user = res.data.user as any
+
+        const user = res.data.user
         const accessToken = res.data.access_token
+        const refreshToken = res.data.refresh_token
 
-        console.log(accessToken)
-        console.log(user)
-
-        if (res.status === 200 && user) {
-          return user
+        if (res.status === 200 && user && accessToken) {
+          // this will be passed down to jwt callback as User
+          return {
+            id: user.uuid,
+            name: user.name,
+            uuid: user.uuid,
+            access_token: accessToken,
+            refresh_token: refreshToken,
+            email: "",
+            groups: [],
+            expires_at: "",
+          }
         } else {
           return null
         }
@@ -39,6 +49,27 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      // user is received from authorize
+
+      if (user) {
+        token.user = user
+      }
+
+      // the token will be passed down to session callback as token
+      return token
+    },
+    async session({ session, token }) {
+      // token is received from jwt callback
+
+      if (token) {
+        session.user = token.user as any
+      }
+
+      return session
+    },
   },
 }
 

@@ -26,7 +26,13 @@ export async function login(
     password: string
   },
   options?: Record<string, any>
-): Promise<APIv1.Response<{ user: APIv1.User; access_token: string }>> {
+): Promise<
+  APIv1.Response<{
+    user: APIv1.User
+    access_token: string
+    refresh_token: string
+  }>
+> {
   return axios.request({
     url: AUTH_API_ROUTES.LOGIN(),
     method: "POST",
@@ -51,7 +57,13 @@ export async function logout(
 export async function refreshToken(
   axios: AxiosInstance,
   options?: Record<string, any>
-): Promise<APIv1.Response<{ user: APIv1.User; access_token: string }>> {
+): Promise<
+  APIv1.Response<{
+    user: APIv1.User
+    access_token: string
+    refresh_token: string
+  }>
+> {
   return axios.request({
     url: AUTH_API_ROUTES.REFRESH(),
     method: "GET",
