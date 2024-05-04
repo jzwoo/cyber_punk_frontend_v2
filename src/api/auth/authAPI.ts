@@ -30,7 +30,6 @@ export async function login(
   APIv1.Response<{
     user: APIv1.User
     access_token: string
-    refresh_token: string
   }>
 > {
   return axios.request({
@@ -61,7 +60,6 @@ export async function refreshToken(
   APIv1.Response<{
     user: APIv1.User
     access_token: string
-    refresh_token: string
   }>
 > {
   return axios.request({
