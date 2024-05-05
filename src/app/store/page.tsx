@@ -2,8 +2,7 @@ import getProducts from "@/lib/getProducts"
 import React from "react"
 
 const Store: React.FC = async () => {
-  const productsData = await getProducts()
-  const products: APIv1.Product[] = productsData.data
+  const products: APIv1.Product[] = await getProducts()
 
   return (
     <div>

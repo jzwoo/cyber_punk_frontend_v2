@@ -1,12 +1,16 @@
-import { axiosPublic } from "@/api/api"
-import { getAllProducts } from "@/api/products/productsAPI"
+import { BASE_URL } from "@/api/api"
+import { PRODUCT_API_ROUTES } from "@/api/products/routes"
 
 const getProducts = async () => {
-  try {
-    return getAllProducts(axiosPublic)
-  } catch (error) {
+  const res = await fetch(`${BASE_URL}${PRODUCT_API_ROUTES.GET_PRODUCTS()}`, {
+    cache: "no-store",
+  })
+
+  if (!res.ok) {
     throw new Error("Failed to fetch products")
   }
+
+  return res.json()
 }
 
 export default getProducts

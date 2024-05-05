@@ -5,7 +5,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { cookies } from "next/headers"
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
@@ -93,6 +93,12 @@ export const authOptions: NextAuthOptions = {
       }
 
       return session
+    },
+  },
+  events: {
+    signOut: async (message) => {
+      // the name of the cookie should match that of cookieName in authorize
+      cookies().delete("jwt")
     },
   },
 }

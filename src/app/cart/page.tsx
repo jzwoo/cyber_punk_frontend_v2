@@ -1,5 +1,6 @@
 "use client"
 
+import { logout } from "@/api/auth/authAPI"
 import { getUser } from "@/api/users/usersAPI"
 import { Button } from "@/components/ui/button"
 import useAxiosAuth from "@/lib/hooks/useAxiosAuth"
@@ -33,6 +34,14 @@ const Cart: React.FC = () => {
       })
   }
 
+  const handleSignOut = async () => {
+    logout(axiosAuth).then((res) => {
+      if (res.status === 200) {
+        signOut()
+      }
+    })
+  }
+
   return (
     <div className="flex flex-col gap-2">
       <div>This is the cart page</div>
@@ -53,7 +62,7 @@ const Cart: React.FC = () => {
 
       <div>{user ? JSON.stringify(user) : "No user details"}</div>
 
-      <Button className="w-fit" variant="secondary" onClick={() => signOut()}>
+      <Button className="w-fit" variant="secondary" onClick={handleSignOut}>
         LOGOUT
       </Button>
     </div>
