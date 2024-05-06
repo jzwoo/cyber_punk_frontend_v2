@@ -3,7 +3,7 @@ import React from "react"
 
 const Navbar: React.FC = () => {
   return (
-    <div className="flex justify-between h-[60px] px-[40px] py-[20px]">
+    <div className="sticky top-0 bg-black flex justify-between h-[60px] px-[40px] py-[20px]">
       <Link className="text-sm" href="/">
         HOME
       </Link>
