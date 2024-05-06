@@ -18,10 +18,10 @@ const Store: React.FC = async () => {
             <div className="flex flex-col items-center bg-gray-200 rounded-3xl p-2">
               <div className="relative w-full h-[180px]">
                 <Image
+                  className="object-cover"
                   src={product.image.url}
                   alt="Drone 1"
                   fill={true}
-                  objectFit="cover"
                   quality={100}
                 />
               </div>
