@@ -5,5 +5,5 @@
   padding: 16px;
   grid-auto-rows: fit-content(400px);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  overflow-y: scroll;
+  overflow-y: auto;
 }

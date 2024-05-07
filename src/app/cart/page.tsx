@@ -22,23 +22,25 @@ const Cart: React.FC = () => {
     return redirect("api/auth/signin")
   }
 
-  const getUserDetails = () => {
+  const getUserDetails = async () => {
     getUser(axiosAuth, session.user.username)
       .then((res) => {
         if (res.status === 200) {
           setUser(res.data)
         }
       })
-      .catch(() => {
-        console.log("There was an error fetching the user details")
+      .catch(async (err) => {
+        if (err.response.status === 401) {
+          await signOut()
+        } else {
+          console.log("There was an error retrieving user details")
+        }
       })
   }
 
   const handleSignOut = async () => {
-    logout(axiosAuth).then((res) => {
-      if (res.status === 200) {
-        signOut()
-      }
+    logout(axiosAuth).finally(() => {
+      signOut()
     })
   }
 
