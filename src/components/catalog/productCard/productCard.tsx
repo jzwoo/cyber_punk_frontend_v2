@@ -1,14 +1,19 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Heart, Star } from "lucide-react"
 import Image from "next/image"
 import React from "react"
 
 interface ProductCardProps {
-  product: APIv1.Product
+  // product is passed down as a string because to pass down props from server to client component, we need the props to be serializable
+  // reference: https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization
+  productString: string
 }
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
-  const { product } = props
+  const { productString } = props
+  const product = JSON.parse(productString) as APIv1.Product
 
   return (
     <div className="flex flex-col items-center bg-gray-200 rounded-3xl p-2">
@@ -36,7 +41,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <div>
             <Button
               variant="secondary"
-              className="h-[40px] w-[40px] p-1 rounded-full"
+              className="h-[40px] w-[40px] p-1 rounded-full text-red-500"
             >
               <Heart />
             </Button>

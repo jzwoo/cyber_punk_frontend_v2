@@ -12,7 +12,7 @@ const Catalog: React.FC<CatalogProps> = (props) => {
   return (
     <div className="gallery">
       {products.map((product) => (
-        <ProductCard product={product} />
+        <ProductCard key={product.id} productString={JSON.stringify(product)} />
       ))}
     </div>
   )
