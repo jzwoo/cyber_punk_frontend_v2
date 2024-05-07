@@ -2,8 +2,11 @@
   display: grid;
   grid-gap: 32px;
   flex-grow: 1;
-  padding: 16px;
   grid-auto-rows: fit-content(400px);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   overflow-y: auto;
+}
+
+.gallery::-webkit-scrollbar {
+  display: none;
 }
