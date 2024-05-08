@@ -1,15 +1,22 @@
+import Ticker from "@/components/ticker/ticker"
 import React from "react"
 
 const Landing: React.FC = () => {
+  const displayTitle = () => {
+    return (
+      <div className="p-[40px]">
+        <span className="align-top text-[140px] leading-[7rem]">CYBER</span>
+
+        <span className="font-light align-top text-[35px]">[コマース]</span>
+      </div>
+    )
+  }
+
   return (
     <div className="h-[calc(100vh-60px)]">
-      <div className="flex flex-row">
-        <div style={{ fontSize: "70px" }}>CYBER</div>
+      {displayTitle()}
 
-        <div className="font-light">[コマース]</div>
-      </div>
-
-      <div>Ticker</div>
+      <Ticker />
 
       <div>Bottom Container</div>
     </div>

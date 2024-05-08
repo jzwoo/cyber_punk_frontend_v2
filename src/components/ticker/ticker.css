@@ -1,0 +1,39 @@
+.ticker {
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: gold 1px solid;
+  border-top: gold 1px solid;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ticker-inner {
+  display: flex;
+  /* ticker plus gap is 200px + 16px = 216px */
+  /* 4304px is 20 times 216px */
+  width: 4304px;
+  overflow: hidden;
+  gap: 16px;
+  animation: ticker 20s linear infinite;
+}
+
+.ticker-inner div {
+  display: flex;
+  justify-items: center;
+  width: 200px;
+  color: gold;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* formula is half of the ticker = 4304px/2 = 2152px but found that it worked best with +6px */
+    transform: translateX(-2158px);
+  }
+}
