@@ -71,10 +71,15 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "blink-caret": {
+          "0%": { borderColor: "transparent" },
+          "50%": { borderColor: "var(--gold)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "blink-caret": "blink-caret 1.5s step-end infinite",
       },
     },
   },

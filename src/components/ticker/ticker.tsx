@@ -2,7 +2,7 @@ import React from "react"
 import "./ticker.css"
 
 const Ticker: React.FC = () => {
-  const renderListItems = () => {
+  const renderTexts = () => {
     const items = []
 
     for (let i = 0; i < 20; i++) {
@@ -20,7 +20,7 @@ const Ticker: React.FC = () => {
 
   return (
     <div className="ticker">
-      <div className="ticker-inner">{renderListItems()}</div>
+      <div className="ticker-inner">{renderTexts()}</div>
     </div>
   )
 }
