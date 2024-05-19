@@ -2,6 +2,7 @@ import { robotoMonoFont } from "@/app/font"
 import Ticker from "@/components/ticker/ticker"
 import Image from "next/image"
 import React from "react"
+import "./landing.css"
 
 const Landing: React.FC = () => {
   const displayTitle = () => {
@@ -39,6 +40,10 @@ const Landing: React.FC = () => {
         </div>
 
         <div className="relative flex flex-[2_2_0%]">
+          <div className="absolute top-0 left-0 z-30 bg-black mt-[-10px] ml-[-10px] text-white p-2 border border-white">
+            407
+          </div>
+
           <Image
             className="object-cover"
             src="/landing/image1.jpg"
@@ -50,6 +55,10 @@ const Landing: React.FC = () => {
 
         <div className="relative flex flex-col flex-1">
           <div className="relative flex flex-1 mt-[-286px] mb-[130px]">
+            <div className="absolute top-0 left-0 z-30 bg-black mt-[-10px] ml-[-10px] text-white p-2 border border-white">
+              80-A45
+            </div>
+
             <Image
               className="object-cover"
               src="/landing/image2.jpg"
@@ -60,9 +69,7 @@ const Landing: React.FC = () => {
           </div>
 
           <div className="absolute flex flex-col items-center right-[-29.5px] bottom-[29.5px] -rotate-90 leading-none">
-            <a href="#credits" className="tracking-wide">
-              SCROLL
-            </a>
+            <a href="#credits">SCROLL</a>
 
             <a href="#credits">
               <span className="text-[var(--gold)] font-light">
@@ -78,8 +85,37 @@ const Landing: React.FC = () => {
 
 const Credits: React.FC = () => {
   return (
-    <div id="credits" className="bg-blue-500 h-[calc(100vh-60px)]">
-      Credits
+    <div
+      id="credits"
+      className="h-[calc(100vh-60px)] flex justify-center items-center"
+    >
+      <div className="glitch">
+        <div className="relative w-[500px] h-[500px]">
+          <Image
+            className="object-cover"
+            src="/landing/image1.jpg"
+            alt="Image2"
+            fill={true}
+            quality={100}
+          />
+        </div>
+        <div>
+          {[...Array(3)].map((_, idx) => (
+            <div
+              key={idx}
+              className="glitch__layer relative w-[500px] h-[500px]"
+            >
+              <Image
+                className="object-cover"
+                src="/landing/image1.jpg"
+                alt="Image2"
+                fill={true}
+                quality={100}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
