@@ -3,17 +3,23 @@
 import { Button } from "@/components/ui/button"
 import { Heart, Star } from "lucide-react"
 import Image from "next/image"
-import React from "react"
+import React, { useState } from "react"
 
 interface ProductCardProps {
-  // product is passed down as a string because to pass down props from server to client component, we need the props to be serializable
-  // reference: https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#passing-props-from-server-to-client-components-serialization
-  productString: string
+  product: APIv1.Product
+  onClickHeart: (productUuid: string, isLike: boolean) => void
+  liked?: boolean
 }
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
-  const { productString } = props
-  const product = JSON.parse(productString) as APIv1.Product
+  const { product, onClickHeart, liked } = props
+
+  const [productLiked, setProductLiked] = useState<boolean>(liked || false)
+
+  const handleLikeProduct = () => {
+    onClickHeart(product.uuid, !productLiked)
+    setProductLiked(!productLiked)
+  }
 
   return (
     <div className="flex flex-col items-center bg-gray-200 rounded-3xl p-2">
@@ -41,9 +47,10 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <div>
             <Button
               variant="secondary"
-              className="h-[40px] w-[40px] p-1 rounded-full text-red-500"
+              className="h-[40px] w-[40px] p-1 rounded-full"
+              onClick={handleLikeProduct}
             >
-              <Heart />
+              <Heart fill={productLiked ? "black" : "transparent"} />
             </Button>
           </div>
         </div>

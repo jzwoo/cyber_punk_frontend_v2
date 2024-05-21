@@ -17,12 +17,18 @@ namespace APIv1 {
   }
 
   type Product = {
-    id: string
+    uuid: string
     name: string
     description: string
     image: Image
     price: number
     quantity: number
     disabled: boolean
+  }
+
+  type Cart = {
+    username: string
+    likes: string[]
+    cart: string[]
   }
 }

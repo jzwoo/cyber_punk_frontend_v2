@@ -75,12 +75,17 @@ const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, trigger, session }) {
       // user is received from authorize
       // the token will be passed down to session callback as token
 
       if (user) {
         token.user = user
+      }
+
+      // the trigger is update when the refresh endpoint is called and the new session token is received
+      if (trigger === "update" && session.user) {
+        token.user = session.user
       }
 
       return token
