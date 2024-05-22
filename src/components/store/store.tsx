@@ -32,7 +32,7 @@ const Store: React.FC<StoreProps> = (props) => {
           </p>
         </div>
 
-        <Separator className="my-8 mx-2" />
+        <Separator className="my-4 mx-2" />
 
         <SessionProvider>
           <Catalog products={filteredProducts} />
