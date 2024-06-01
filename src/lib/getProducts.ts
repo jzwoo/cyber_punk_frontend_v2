@@ -1,6 +1,7 @@
 import { BASE_URL } from "@/api/api"
 import { PRODUCT_API_ROUTES } from "@/api/products/routes"
 
+// TODO: add filters into parameters to filter for products
 const getProducts = async () => {
   const res = await fetch(`${BASE_URL}${PRODUCT_API_ROUTES.GET_PRODUCTS()}`, {
     cache: "no-store",

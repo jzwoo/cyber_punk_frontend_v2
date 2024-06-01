@@ -5,7 +5,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { cookies } from "next/headers"
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
