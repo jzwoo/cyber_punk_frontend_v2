@@ -1,72 +1,22 @@
-"use client"
-
-import { logout } from "@/api/auth/authAPI"
-import { getUser } from "@/api/users/usersAPI"
-import { Button } from "@/components/ui/button"
-import useAxiosAuth from "@/lib/hooks/useAxiosAuth"
-import { signOut, useSession } from "next-auth/react"
+import { SignOutButton } from "@/components/auth-components/auth-components"
+import authOptions from "@/lib/auth/authOptions"
+import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
-import React, { useState } from "react"
+import React from "react"
 
-const Cart: React.FC = () => {
-  const { data: session, status } = useSession()
-  const axiosAuth = useAxiosAuth()
+const Cart: React.FC = async () => {
+  const session = await getServerSession(authOptions)
 
-  const [user, setUser] = useState<APIv1.User | null>(null)
-
-  if (status === "loading") {
-    return <div>Loading...</div>
-  }
-
-  if (!session) {
-    return redirect("api/auth/signin")
-  }
-
-  const getUserDetails = async () => {
-    getUser(axiosAuth, session.user.username)
-      .then((res) => {
-        if (res.status === 200) {
-          setUser(res.data)
-        }
-      })
-      .catch(async (err) => {
-        if (err.response.status === 401) {
-          await signOut()
-        } else {
-          console.log("There was an error retrieving user details")
-        }
-      })
-  }
-
-  const handleSignOut = async () => {
-    logout(axiosAuth).finally(() => {
-      signOut()
-    })
+  if (session === null) {
+    return redirect("/login")
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <div>This is the cart page</div>
-
-      <div className="flex gap-2">
-        <Button className="w-fit" variant="secondary" onClick={getUserDetails}>
-          GET USER DETAILS
-        </Button>
-
-        <Button
-          className="w-fit"
-          variant="secondary"
-          onClick={() => setUser(null)}
-        >
-          CLEAR
-        </Button>
+    <div className="flex flex-col">
+      {JSON.stringify(session)}
+      <div>
+        <SignOutButton />
       </div>
-
-      <div>{user ? JSON.stringify(user) : "No user details"}</div>
-
-      <Button className="w-fit" variant="secondary" onClick={handleSignOut}>
-        LOGOUT
-      </Button>
     </div>
   )
 }

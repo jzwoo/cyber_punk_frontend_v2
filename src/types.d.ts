@@ -27,7 +27,8 @@ namespace APIv1 {
   }
 
   type Cart = {
-    username: string
+    provider: string
+    user_id: string
     likes: string[]
     cart: string[]
   }

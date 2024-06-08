@@ -10,9 +10,13 @@ declare module "next-auth" {
     email: string
     groups: string[]
     expires_at: string
+    image: string
   }
 
   interface Session {
     user: User
+    accessToken: string
+    expiresAt: string
+    provider: string
   }
 }
