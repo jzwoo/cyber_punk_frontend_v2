@@ -1,5 +1,5 @@
 import { NextAuthOptions } from "next-auth"
-import Google from "next-auth/providers/google"
+import GoogleProvider from "next-auth/providers/google"
 import { cookies } from "next/headers"
 
 const authOptions: NextAuthOptions = {
@@ -64,7 +64,7 @@ const authOptions: NextAuthOptions = {
     //     }
     //   },
     // }),
-    Google({
+    GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       // Google requires "offline" access_type to provide a `refresh_token`
@@ -93,7 +93,7 @@ const authOptions: NextAuthOptions = {
         // account is received from the provider only on the first login
         // subsequent calls to get session will not have account
         token.provider = account.provider
-        token.accessToken = account.access_token
+        token.accessToken = account.id_token
         token.expiresAt = account.expires_at
         token.refreshToken = account.refresh_token
 
@@ -126,7 +126,7 @@ const authOptions: NextAuthOptions = {
 
           return {
             ...token,
-            accessToken: responseTokens.access_token,
+            accessToken: responseTokens.id_token,
             expiresAt: Math.floor(
               Date.now() / 1000 + (responseTokens.expires_in as number)
             ),
