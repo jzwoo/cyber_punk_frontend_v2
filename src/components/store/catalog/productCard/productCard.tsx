@@ -21,13 +21,13 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault()
-    onClickHeart(product.uuid, !productLiked)
+    onClickHeart(product.id, !productLiked)
     setProductLiked(!productLiked)
   }
 
   return (
     <Link
-      href={`/store/${product.uuid}`}
+      href={`/store/${product.id}`}
       prefetch={true}
       passHref
       legacyBehavior

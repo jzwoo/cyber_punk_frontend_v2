@@ -38,10 +38,10 @@ const Catalog: React.FC<CatalogProps> = (props) => {
     <div className="gallery">
       {products.map((product) => (
         <ProductCard
-          key={product.uuid}
+          key={product.id}
           product={product}
           onClickHeart={onClickHeart}
-          liked={userCart ? userCart.likes.includes(product.uuid) : false}
+          liked={userCart ? userCart.likes.includes(product.id) : false}
         />
       ))}
     </div>

@@ -5,13 +5,13 @@ import Image from "next/image"
 import React from "react"
 
 interface ProductPageProps {
-  params: { productUuid: string }
+  params: { productId: string }
 }
 
 export const generateMetadata = async (props: ProductPageProps) => {
   const { params } = props
 
-  const product: APIv1.Product = await getProduct(params.productUuid)
+  const product: APIv1.Product = await getProduct(params.productId)
 
   return {
     title: product.name,
@@ -23,7 +23,7 @@ const ProductPage: React.FC<ProductPageProps> = async (props) => {
   const { params } = props
 
   const session = await getServerSession(authOptions)
-  const product: APIv1.Product = await getProduct(params.productUuid)
+  const product: APIv1.Product = await getProduct(params.productId)
 
   return (
     <div className="flex h-[calc(100vh-60px)]">
