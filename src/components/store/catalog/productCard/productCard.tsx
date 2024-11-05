@@ -8,7 +8,7 @@ import React, { useState } from "react"
 
 interface ProductCardProps {
   product: APIv1.Product
-  onClickHeart: (productUuid: string, isLike: boolean) => void
+  onClickHeart: (productId: string, isLike: boolean) => void
   liked?: boolean
 }
 
@@ -26,12 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
   }
 
   return (
-    <Link
-      href={`/store/${product.id}`}
-      prefetch={true}
-      passHref
-      legacyBehavior
-    >
+    <Link href={`/store/${product.id}`} prefetch={true} passHref legacyBehavior>
       <div className="flex flex-col items-center bg-gray-200 rounded-3xl p-2 transition-transform duration-200 ease-in-out transform hover:scale-105 cursor-pointer">
         <div className="relative w-full h-[180px]">
           <Image

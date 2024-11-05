@@ -6,7 +6,7 @@ namespace APIv1 {
   }
 
   type User = {
-    uuid: string
+    id: string
     username: string
     name: string
   }

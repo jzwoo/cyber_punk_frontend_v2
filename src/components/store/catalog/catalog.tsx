@@ -12,7 +12,7 @@ interface CatalogProps {
 const Catalog: React.FC<CatalogProps> = (props) => {
   const { products, userCart } = props
 
-  const onClickHeart = async (productUuid: string, isLike: boolean) => {
+  const onClickHeart = async (productId: string, isLike: boolean) => {
     "use server"
 
     if (!userCart) {
@@ -23,12 +23,10 @@ const Catalog: React.FC<CatalogProps> = (props) => {
       ...userCart,
     }
 
-    if (isLike && !newUserCart.likes.includes(productUuid)) {
-      newUserCart.likes.push(productUuid)
+    if (isLike && !newUserCart.likes.includes(productId)) {
+      newUserCart.likes.push(productId)
     } else {
-      newUserCart.likes = newUserCart.likes.filter(
-        (uuid) => uuid !== productUuid
-      )
+      newUserCart.likes = newUserCart.likes.filter((id) => id !== productId)
     }
 
     await updateUserCart(newUserCart)
