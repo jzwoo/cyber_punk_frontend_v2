@@ -7,8 +7,8 @@ namespace APIv1 {
 
   type User = {
     id: string
-    username: string
     name: string
+    email: string
   }
 
   type Image = {
@@ -27,9 +27,9 @@ namespace APIv1 {
   }
 
   type Cart = {
-    provider: string
+    id: string
     user_id: string
     likes: string[]
-    cart: string[]
+    items: string[]
   }
 }

@@ -17,7 +17,6 @@ const getUserCart = async () => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${session.accessToken}`,
-        "X-Provider": session.provider,
       },
     }
   )

@@ -56,7 +56,11 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
                 className="h-[40px] w-[40px] p-1 rounded-full"
                 onClick={(e) => handleLikeProduct(e)}
               >
-                <Heart fill={productLiked ? "black" : "transparent"} />
+                <Heart
+                  color={productLiked ? "red" : "gray"}
+                  fill={productLiked ? "red" : "transparent"}
+                  strokeWidth={0.75}
+                />
               </Button>
             </div>
           </div>

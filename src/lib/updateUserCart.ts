@@ -13,11 +13,9 @@ const updateUserCart = async (updates: any) => {
   const res = await fetch(
     `${BASE_URL}${CART_API_ROUTES.UPDATE_CART(session.user.id)}`,
     {
-      cache: "no-cache",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${session.accessToken}`,
-        "X-Provider": session.provider,
       },
       method: "PUT",
       body: JSON.stringify(updates),
