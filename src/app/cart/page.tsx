@@ -12,8 +12,10 @@ const Cart: React.FC = async () => {
   }
 
   return (
-    <div className="flex flex-col">
-      {JSON.stringify(session)}
+    <div className="flex flex-col w-screen">
+      <div className="w-full break-words whitespace-pre-wrap">
+        {JSON.stringify(session)}
+      </div>
       <div>
         <SignOutButton />
       </div>

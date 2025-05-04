@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Heart, Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 interface ProductCardProps {
   product: APIv1.Product
@@ -15,14 +15,18 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { product, onClickHeart, liked } = props
 
-  const [productLiked, setProductLiked] = useState<boolean>(liked || false)
+  const [productLiked, setProductLiked] = useState(liked)
+
+  useEffect(() => {
+    setProductLiked(liked)
+  }, [liked])
 
   const handleLikeProduct = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.preventDefault()
-    onClickHeart(product.id, !productLiked)
     setProductLiked(!productLiked)
+    e.preventDefault()
+    onClickHeart(product.id, !liked)
   }
 
   return (

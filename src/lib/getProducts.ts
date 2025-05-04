@@ -1,17 +1,15 @@
-import { BASE_URL } from "@/api/api"
-import { PRODUCT_API_ROUTES } from "@/api/products/routes"
+import { axiosPublic } from "@/api/api"
+import { getAllProducts } from "@/api/products/productsAPI"
 
 // TODO: add filters into parameters to filter for products
 const getProducts = async () => {
-  const res = await fetch(`${BASE_URL}${PRODUCT_API_ROUTES.GET_PRODUCTS()}`, {
-    cache: "no-store",
-  })
+  try {
+    const res = await getAllProducts(axiosPublic)
 
-  if (!res.ok) {
+    return res.data
+  } catch (error) {
     throw new Error("Failed to fetch products")
   }
-
-  return res.json()
 }
 
 export default getProducts

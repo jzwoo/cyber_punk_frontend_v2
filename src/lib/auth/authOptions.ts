@@ -93,7 +93,9 @@ const authOptions: NextAuthOptions = {
         if (Date.now() < (token.expiresAt as number) * 1000) {
           return token
         } else {
-          console.log("Access token expired. Refreshing token...")
+          console.log(
+            `[${new Date().toLocaleTimeString()}] Access token expired. Refreshing token...`
+          )
 
           const response = await fetch(`${BASE_URL}/api/v1/auth/refresh`, {
             method: "POST",
