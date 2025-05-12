@@ -2,6 +2,7 @@ import { BASE_URL } from "@/api/api"
 import { NextAuthOptions } from "next-auth"
 import Github from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
+import {signOut} from "next-auth/react";
 
 const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
@@ -119,7 +120,8 @@ const authOptions: NextAuthOptions = {
 
             return token
           } else {
-            throw new Error("Error when refreshing token")
+            // Unable to refresh token for whatever reason, sign out
+            await signOut()
           }
         }
       }
